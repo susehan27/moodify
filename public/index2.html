@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Karla:700|Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <title>moodify</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <nav class="navbar">
+                    <a class="navbar-brand karla" href="/">moodify</a>
+                    <ul class="nav karla">
+                        <a class="nav-item lightw" href="/about">about</a>
+                        <a class="nav-item lightw" href="/help">help</a>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row moodify">
+            <div class="col">
+                <div class="intro shadow">
+                    <h3 id="instructions" class="karla lightw">step 1: take a pic! (or upload)</h3>
+                    <div id="upload-wrapper">
+                        <a class="btn btn-light capture lightw" value="capture" id="use-webcam">use webcam</a>
+                        <p class="lightw karla">or</p>
+                        <input class="btn btn-light lightw text-center" onchange="readURL(this)" type="file" name="pic" accepts="images/*" id="image-input">
+                    </div>
+                    <div id="main-wrapper">
+                        <video width=400 height=350 id="player" autoplay></video>
+                        <a class="capture btn btn-light mx-auto" value="capture" id="capture">capture</a>
+                    </div>
+                    <div id="snapshot-wrapper">
+                        <canvas id="canvas" width=400 height=300></canvas>
+                    </div>
+                    <a class="confirm btn lightb" href="/app" id='get-started'></a>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div id="playlist-wrapper"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/run.js"></script>
+</body>
+</html>
