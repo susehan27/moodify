@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/susehan27/moodify#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "request": "^2.88.0",
+    "require": "^2.4.20",
+    "spotify-web-api-node": "^4.0.0"
   }
 }

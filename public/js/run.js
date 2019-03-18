@@ -1,6 +1,7 @@
-var subscriptionKey = 'ef312d5091da4d6ea6e8c7c66b632085';
-var clientId = '29b3c107894246719fb3c6b9684d19e0';
-var secret = '39d11efc93804a5b80d299676c10e8ed';
+
+var subscriptionKey = "ef312d5091da4d6ea6e8c7c66b632085";
+var clientId = "d60bf11c7b194604ae4c722f37ddf05d";
+var secret = "f2bb9112f8a74a84afe9d4784bf5ffaf";
 var player;
 var canvas;
 var context;
@@ -72,32 +73,29 @@ $(document).on('click', '#use-webcam', function() {
     });
 });
 
-$(document).on('click', '#image-input', function() {
-    function readURL(input) {
+function readURL(input) {
 
-        // if a file was uploaded create an img element than use that to draw the canvas
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                var img = new Image(400, 300);
-                img.src =  e.target.result;
-                img.id = 'placeholder';
-                img.alt = input.files[0].name;
-                $('#snapshot-wrapper').prepend(img);
-                imageData = convertToBlobFormat(e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-    
-            $('#main-wrapper').hide();
-            $('#upload-wrapper').hide();
-            $('#snapshot-wrapper').append($('<h3 class="lightw" id="confirm-label lightw">is this okay?</h3>'),
-                                          $('<button class="confirm btn btn-light mr-2" id="confirm">confirm</button>'),
-                                          $('<button class="confirm btn btn-light mx-auto" id="try-again">try again</button>'));
-        }
+    // if a file was uploaded create an img element than use that to draw the canvas
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            var img = new Image(400, 300);
+            img.src =  e.target.result;
+            img.id = 'placeholder';
+            img.alt = input.files[0].name;
+            $('#snapshot-wrapper').prepend(img);
+            imageData = convertToBlobFormat(e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+
+        $('#main-wrapper').hide();
+        $('#upload-wrapper').hide();
+        $('#snapshot-wrapper').append($('<h3 class="lightw" id="confirm-label lightw">is this okay?</h3>'),
+                                        $('<button class="confirm btn btn-light mr-2" id="confirm">confirm</button>'),
+                                        $('<button class="confirm btn btn-light mx-auto" id="try-again">try again</button>'));
     }
-    readURL();
-});
+}
 
 
 $(document).on('click', '#confirm', function() {          
@@ -257,6 +255,9 @@ function startApp() {
         },
         url: queryURL,
         method: "POST",
+        data: "json",
+        contentType: "application/x-www-form-urlencoded",
+        headers: {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS", "Access-Control-Allow-Headers": "*"},
         data: {grant_type: "client_credentials"}
     })
     .done( function(response) {
@@ -268,8 +269,9 @@ function startApp() {
             console.log("Token Granted!");
         }
     })
-    .fail( function() {
+    .fail( function(error) {
         console.log("Token Request Failed!");
+        console.log(error);
     });
 }
 
@@ -297,8 +299,9 @@ function playlistMatch() {
                                         + "' width='280' height='320' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>");
         }
     })
-    .fail( function() {
+    .fail( function(error) {
         console.log("playlistMatch() has failed");
+        console.log(error);
     });
 }
 
